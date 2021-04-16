@@ -7,7 +7,7 @@ export const Promotion = ({promotion, promotionsMetaData, deletePromotionFromSta
 
     const onDeletePromotion = async (id) => {
         await deletePromotion(id);
-        await deletePromotionFromState(id); // check if change
+        await deletePromotionFromState(id);
     };
 
     return(

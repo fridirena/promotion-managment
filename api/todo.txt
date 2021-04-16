@@ -1,0 +1,30 @@
+Server:
+
+error handling
+
+
+client:
+
+
+pretty the ui + responsive
+lazy loading
+toast once action succeeded
+show errors to console log
+
+
+
+
+type script
+Redux
+
+
+DONE:
+render the table after init data
+remove the id
+paging in the select method
+don't show _id and _v columns
+change icon of edit to pencil
+edit popup
+connect the actions to the api
+render the table after actions
+format date and add type to columns

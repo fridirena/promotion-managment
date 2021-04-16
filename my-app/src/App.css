@@ -1,0 +1,48 @@
+
+.header {
+  width: 100%;
+  padding: 2%;
+  background-color: burlywood;
+  color: white;
+  text-align: center;
+}
+
+.table td, .table th {
+  text-align: center;
+}
+
+.mrgnbtm {
+  margin-top: 20px;
+}
+
+.form-check-input {
+  margin-left: 0 !important;
+}
+
+
+.table-fixed {
+  width: 100%;
+  background-color: #f3f3f3;
+}
+.table-fixed tbody {
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+}
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+  display: block;
+}
+.table-fixed tbody td {
+  float: left;
+}
+.table-fixed thead tr th {
+  float: left;
+  background-color: #f39c12;
+  border-color: #e67e22;
+  height: 80px;
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { Promotion } from "./Promotion";
 import { PromotionHeader } from "./PromotionHeader";
 import {EditPromotionModal} from "./EditPromotionModal";
@@ -10,12 +10,15 @@ export const Promotions = ({   promotions,
                                promotionsMetaData,
                                deletePromotionFromState,
                                editPromotionInState,
-                               fetchMorePromotions}) => {
+                               fetchMorePromotions,
+                               pageData,
+                               updateLowestCurrentPage}) => {
 
     const [showEditModal, setShowEditModal] = useState(false);
-    const lowestCurrentPage = useRef(1);
 
-    // we want to use isFetching in scroll event handler, but state are not accessible there and ref is.
+    // we want to use isFetching and pageData in scroll event handler, but state are not accessible there and ref is.
+    const pageDataRef = useRef();
+    pageDataRef.current = pageData;
     const [isFetching, _setIsFetching] = useState(false);
     const isFetchingRef = useRef(isFetching);
     const setIsFetching = (isFetching) => {
@@ -44,20 +47,17 @@ export const Promotions = ({   promotions,
         const scrollElement = event.target;
         const THRESHOLD = 400;
 
-        if (scrollElement.scrollTop + THRESHOLD > scrollElement.scrollHeight - scrollElement.clientHeight) {
-            doFetch();
+        if (pageDataRef.current.hasNextPage && scrollElement.scrollTop + THRESHOLD >= scrollElement.scrollHeight - scrollElement.clientHeight) {
+            doFetch(true);
+        } else if (pageDataRef.current.lowestCurrentPage > 1 && scrollElement.scrollTop - THRESHOLD <= 0){
+            doFetch(false);
         }
     };
 
-    const updateLowestCurrentPage = () => {
-        lowestCurrentPage.current = lowestCurrentPage.current + 1;
-    };
-
-    const doFetch = async () => {
-        console.log("fetch!");
+    const doFetch = async (isBottom) => {
         setIsFetching(true);
-        await fetchMorePromotions(lowestCurrentPage.current + NUM_OF_RENDERING_PAGES);
-        updateLowestCurrentPage();
+        await fetchMorePromotions(pageDataRef.current.lowestCurrentPage + (isBottom ? NUM_OF_RENDERING_PAGES : -1), isBottom);
+        updateLowestCurrentPage(isBottom);
         setIsFetching(false);
     };
 

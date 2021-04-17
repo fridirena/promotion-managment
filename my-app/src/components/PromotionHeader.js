@@ -1,5 +1,5 @@
 import React from 'react'
-import {prettifyHeader, getShowableKeys, getValueByType} from "../util/util"
+import {prettifyHeader, getShowableKeys} from "../util/util"
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 

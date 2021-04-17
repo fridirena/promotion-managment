@@ -2,17 +2,16 @@ Server:
 
 error handling
 
-
 client:
 
-
 pretty the ui + responsive
-lazy loading
+
 toast once action succeeded
 show errors to console log
 clean up after scroll will be deleted to unregister to the event
 stop when last or first page
-
+loading
+init data -> when scroll is down it doesn't work!!!
 
 
 type script
@@ -29,3 +28,6 @@ edit popup
 connect the actions to the api
 render the table after actions
 format date and add type to columns
+delete issues with the loading calcluation
+fix init data
+lazy loading

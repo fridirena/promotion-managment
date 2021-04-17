@@ -71,7 +71,7 @@ export const EditPromotionModal = ({show, onCancel, onSave, promotion, promotion
                 <Button variant="secondary" onClick={onCancel}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={onSave.bind(this, editedPromotion)}>
+                <Button variant="primary" onClick={onSave.bind(this, editedPromotion)} className="custom-btn">
                     Save Changes
                 </Button>
             </Modal.Footer>

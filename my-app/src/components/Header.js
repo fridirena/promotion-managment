@@ -1,10 +1,14 @@
-import React from 'react'
+import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 export const Header = ({initData}) => {
     return(
         <div className="header">
-            <button type="button" onClick= {(e) => initData()} className="btn btn-danger" style={{marginRight: '10px'}}>Init Data</button>
-            <h3>Promotion Management</h3>
+            <Button variant="primary" onClick={(e) => initData()} className="custom-btn">
+                Init Data
+            </Button>
+            <h4>Promotion Management</h4>
+            <div></div>
         </div>
     )
 }

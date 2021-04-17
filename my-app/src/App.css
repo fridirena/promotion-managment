@@ -5,24 +5,32 @@ html, body, #root {
 
 .header {
   width: 100%;
-  background-color: #ffcc99;
+  background-color: #f4e6d7;
+  text-shadow: 1px 1px #000000;
   color: white;
   text-align: center;
   display: flex;
   height: 60px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding-left: 10px;
 }
 
 .promotionsList {
   overflow-y: auto;
+  overflow-x: hidden;
   height: calc(100% - 130px);
 }
 
 .promotionsHeader {
-  color: #00c3ff;
-  border-bottom: 1px solid #00c3ff;
+  color: #e0b385;
+  border-bottom: 1px solid #e0b385;
   padding-bottom: 5px;
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+.custom-btn {
+  background-color: #cc9053 !important;
+  border: #fff !important;
 }

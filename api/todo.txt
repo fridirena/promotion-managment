@@ -1,23 +1,20 @@
 Server:
 
-error handling
-
+-----------------------
 client:
 
 pretty the ui + responsive
+clean up after scroll will be deleted to unregister to the event
+
+------------------------
+Nice to have:
 
 toast once action succeeded
-show errors to console log
-clean up after scroll will be deleted to unregister to the event
-stop when last or first page
 loading
-init data -> when scroll is down it doesn't work!!!
-
-
 type script
 Redux
 
-
+--------------------------
 DONE:
 render the table after init data
 remove the id
@@ -31,3 +28,7 @@ format date and add type to columns
 delete issues with the loading calcluation
 fix init data
 lazy loading
+init data -> when scroll is down it doesn't work!!!
+stop when last or first page
+error handling
+show errors to console log

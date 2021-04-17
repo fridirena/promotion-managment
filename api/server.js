@@ -17,3 +17,10 @@ app.listen(port, () => {
 });
 
 app.use('/promotions', promotionApi);
+
+app.use(function (err, req, res, next) {
+    console.log("Error has occurred ", err.message);
+    res.status(400);
+    return res.json({status: "error", errorMessage: err.message});
+});
+

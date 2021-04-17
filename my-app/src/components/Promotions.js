@@ -87,7 +87,6 @@ export const Promotions = ({   promotions,
         return [setRef]
     }
 
-
     if (promotions.length === 0) return null;
     const promotionsElements = promotions.map((promotion) =>
         <Promotion

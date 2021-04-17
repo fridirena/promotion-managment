@@ -1,4 +1,4 @@
-const PROMOTION_NUM = 100;
+const PROMOTION_NUM = 1000;
 const DEFAULT_PAGE_SIZE = 10;
 const DEFAULT_PAGE_NUM = 1;
 const PROMOTION_NAME = "promotions";

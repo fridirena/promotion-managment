@@ -10,7 +10,8 @@ pretty the ui + responsive
 lazy loading
 toast once action succeeded
 show errors to console log
-
+clean up after scroll will be deleted to unregister to the event
+stop when last or first page
 
 
 

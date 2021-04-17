@@ -3,19 +3,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Header } from './components/Header';
 import { Promotions } from './components/Promotions';
-import InitData from './components/InitData';
 import { getAllPromotions, createPromotions, getPromotionsMetaData } from './services/PromotionService';
+import {NUM_OF_RENDERING_PAGES, PAGE_SIZE  } from './util/util';
 
 function App() {
   const [promotions, setPromotions] = useState([]);
   const [promotionsMetaData, setPromotionsMetaData] = useState({});
 
-  const getAndSetPromotions = async () => {
-      const promotionsData = await getAllPromotions();
-      setPromotions(promotionsData.promotions);
+  const getAndSetPromotions = async (page) => {
+      const promotionsData = await getAllPromotions(page);
+      setPromotions((promotions) => [...promotions, ...promotionsData.promotions]);
   };
 
-  const initData = async (e) => {
+  const initData = async () => {
       await createPromotions();
       await getAndSetPromotions();
   };
@@ -38,7 +38,7 @@ function App() {
 
   useEffect(() => {
       const loadData = async () => {
-          const results = await Promise.all([getPromotionsMetaData(), getAllPromotions()]);
+          const results = await Promise.all([getPromotionsMetaData(), getAllPromotions(1, PAGE_SIZE * NUM_OF_RENDERING_PAGES)]);
           setPromotionsMetaData(results[0].metaData);
           setPromotions(results[1].promotions);
       };
@@ -47,25 +47,14 @@ function App() {
   }, []);
 
     return (
-        <div className="App">
-          <Header/>
-          <div className="container mrgnbtm">
-            <div className="row">
-              <div className="col-md-8">
-                  <InitData
-                      initData={initData}
-                    >
-                  </InitData>
-              </div>
-            </div>
-          </div>
-          <div className="row mrgnbtm">
+        <div style={{height: '100%'}}>
+            <Header initData={initData}/>
             <Promotions promotions={promotions}
                         promotionsMetaData={promotionsMetaData}
                         deletePromotionFromState={deletePromotionFromState}
                         editPromotionInState={editPromotionInState}
+                        fetchMorePromotions={getAndSetPromotions}
             />
-          </div>
         </div>
     );
 }

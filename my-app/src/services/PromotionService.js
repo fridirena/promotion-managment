@@ -1,9 +1,8 @@
+import {PAGE_SIZE} from "../util/util";
 
-export async function getAllPromotions() {
+export async function getAllPromotions(page = 1, pageSize = PAGE_SIZE) {
     try{
-        const page =1;
-        const limit = 10;
-        const response = await fetch(`/promotions?page=${page}&limit=${limit}`);
+        const response = await fetch(`/promotions?page=${page}&limit=${pageSize}`);
         return await response.json();
     }catch(error) {
         return [];

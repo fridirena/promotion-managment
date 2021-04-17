@@ -1,19 +1,10 @@
 import React from 'react'
 
-export const Header = () => {
-
-    const headerStyle = {
-
-        width: '100%',
-        padding: '2%',
-        backgroundColor: "#ffcc99",
-        color: 'white',
-        textAlign: 'center'
-    }
-
+export const Header = ({initData}) => {
     return(
-        <div style={headerStyle}>
-            <h1>Promotion Management</h1>
+        <div className="header">
+            <button type="button" onClick= {(e) => initData()} className="btn btn-danger" style={{marginRight: '10px'}}>Init Data</button>
+            <h3>Promotion Management</h3>
         </div>
     )
 }

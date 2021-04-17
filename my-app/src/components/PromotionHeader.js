@@ -1,13 +1,23 @@
 import React from 'react'
-import {prettifyHeader, getShowableKeys} from "../util/util"
+import {prettifyHeader, getShowableKeys, getValueByType} from "../util/util"
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export const PromotionHeader = ({promotionHeader}) => {
 
-    return [
-        <th key="checkbox" className="col-1"/>,
-        getShowableKeys(promotionHeader)
-            .map((key) => <th key={key} className="col-2"><span>{prettifyHeader(key)}</span></th>),
-        <th key="actions" className="col-1"/>
-    ]
+    return (
+        <Row className="promotionsHeader">
+            <Col>
+
+            </Col>
+            {
+                getShowableKeys(promotionHeader)
+                    .map((key) => <Col key={key}>{prettifyHeader(key)}</Col>)
+            }
+            <Col>
+
+            </Col>
+        </Row>
+    );
 
 };

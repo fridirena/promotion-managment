@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Header } from './components/Header';
 import { Promotions } from './components/Promotions';
-import { getAllPromotions, createPromotions, getPromotionsMetaData } from './services/PromotionService';
+import { getPromotions, createPromotions, getPromotionsMetaData, getPagesOfPromotions } from './services/PromotionService';
 import { NUM_OF_RENDERING_PAGES, PAGE_SIZE, FIRST_PAGE  } from './util/util';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
   const [pageData, setPageData] = useState({hasNextPage: true, lowestCurrentPage: FIRST_PAGE});
 
   const getAndSetPromotions = async (page, isBottom) => {
-      const promotionsData = await getAllPromotions(page);
+      const promotionsData = await getPromotions(page);
 
       setPageData((pageData) => {
           return Object.assign({}, pageData, {hasNextPage: promotionsData.hasNextPage});
@@ -23,8 +23,8 @@ function App() {
       );
   };
 
-  const getAndResetPromotions = async (page=pageData.lowestCurrentPage) => {
-      const promotionsData = await getAllPromotions(page, PAGE_SIZE * NUM_OF_RENDERING_PAGES);
+  const getAndResetCurrentPromotions = async () => {
+      const promotionsData = await getPagesOfPromotions(pageData.lowestCurrentPage, PAGE_SIZE, NUM_OF_RENDERING_PAGES);
       setPromotions(promotionsData.promotions);
     };
 
@@ -37,8 +37,8 @@ function App() {
 
   const initData = async () => {
       await createPromotions();
-      await getAndResetPromotions(FIRST_PAGE);
-
+      const promotionsData = await getPromotions(FIRST_PAGE, PAGE_SIZE * NUM_OF_RENDERING_PAGES);
+      setPromotions(promotionsData.promotions);
       setPageData((pageData) => {
           return Object.assign({}, pageData, {lowestCurrentPage: FIRST_PAGE});
       });
@@ -54,7 +54,7 @@ function App() {
 
   useEffect(() => {
       const loadData = async () => {
-          const results = await Promise.all([getPromotionsMetaData(), getAllPromotions(FIRST_PAGE, PAGE_SIZE * NUM_OF_RENDERING_PAGES)]);
+          const results = await Promise.all([getPromotionsMetaData(), getPromotions(FIRST_PAGE, PAGE_SIZE * NUM_OF_RENDERING_PAGES)]);
           setPromotionsMetaData(results[0].metaData);
           setPromotions(results[1].promotions);
       };
@@ -76,7 +76,7 @@ function App() {
             <Header initData={initData}/>
             <Promotions promotions={promotions}
                         promotionsMetaData={promotionsMetaData}
-                        deletePromotionFromState={getAndResetPromotions}
+                        deletePromotionFromState={getAndResetCurrentPromotions}
                         editPromotionInState={editPromotionInState}
                         fetchMorePromotions={getAndSetPromotions}
                         pageData={pageData}

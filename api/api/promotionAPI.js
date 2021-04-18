@@ -10,6 +10,14 @@ router.get('/', async (req, res, next) => {
     res.json(promotions);
 });
 
+router.get('/pages', async (req, res, next) => {
+    const page = req.query.page;
+    const limit = req.query.limit;
+    const numOfPages = req.query.numOfPages;
+    const promotions = await promotionService.getPagesOfPromotions(page, limit, numOfPages).catch(e => next(e));
+    res.json(promotions);
+});
+
 router.post('/create', async (req, res, next) => {
     await promotionService.createNewPromotions().catch(e => next(e));
     res.json({status: "success"});

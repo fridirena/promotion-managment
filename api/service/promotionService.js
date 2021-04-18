@@ -20,6 +20,20 @@ module.exports = {
         return await promotions.paginate({}, options);
     },
 
+    getPagesOfPromotions: async function (page=global.DEFAULT_PAGE_NUM, limit=global.DEFAULT_PAGE_SIZE, numOfPages=1) {
+
+        const promises = [];
+        for(i=0; i < numOfPages; i++){
+            promises.push(this.getPromotions(+page + +i, limit));
+        }
+
+        const results = await Promise.all(promises);
+        const promotionsArr = results.map(result => {
+            return result.promotions;
+        });
+        return {promotions: [].concat.apply([], promotionsArr)};
+    },
+
     updatePromotion: async function (promotion) {
         return await promotions.findByIdAndUpdate(promotion._id, promotion, {new: true});
     },

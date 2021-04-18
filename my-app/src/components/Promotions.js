@@ -45,7 +45,7 @@ export const Promotions = ({   promotions,
         }
 
         const scrollElement = event.target;
-        const THRESHOLD = 400;
+        const THRESHOLD = 800;
 
         if (pageDataRef.current.hasNextPage && scrollElement.scrollTop + THRESHOLD >= scrollElement.scrollHeight - scrollElement.clientHeight) {
             doFetch(true);

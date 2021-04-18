@@ -1,6 +1,6 @@
 
 export const NUM_OF_RENDERING_PAGES = 3;
-export const PAGE_SIZE = 50;
+export const PAGE_SIZE = 100;
 export const FIRST_PAGE = 1;
 
 export function prettifyHeader(key){

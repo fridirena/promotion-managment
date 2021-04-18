@@ -3,7 +3,6 @@ Server:
 -----------------------
 client:
 
-pretty the ui + responsive
 clean up after scroll will be deleted to unregister to the event
 
 ------------------------
@@ -13,6 +12,8 @@ toast once action succeeded
 loading
 type script
 Redux
+testing
+error handling in the UI
 
 --------------------------
 DONE:
@@ -32,3 +33,4 @@ init data -> when scroll is down it doesn't work!!!
 stop when last or first page
 error handling
 show errors to console log
+pretty the ui + responsive

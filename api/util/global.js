@@ -1,5 +1,5 @@
-const PROMOTION_NUM = 500;
-const DEFAULT_PAGE_SIZE = 10;
+const PROMOTION_NUM = 10000;
+const DEFAULT_PAGE_SIZE = 100;
 const DEFAULT_PAGE_NUM = 1;
 const PROMOTION_NAME = "promotions";
 

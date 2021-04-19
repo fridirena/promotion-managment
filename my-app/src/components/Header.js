@@ -11,4 +11,4 @@ export const Header = ({initData}) => {
             <div></div>
         </div>
     )
-}
+};

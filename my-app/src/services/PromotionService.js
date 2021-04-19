@@ -1,11 +1,11 @@
-import {PAGE_SIZE} from "../util/util";
+import {PAGE_SIZE, FIRST_PAGE} from "../util/util";
 
-export async function getPromotions(page = 1, pageSize = PAGE_SIZE) {
+export async function getPromotions(page = FIRST_PAGE, pageSize = PAGE_SIZE) {
     const response = await fetch(`/promotions?page=${page}&limit=${pageSize}`);
     return await response.json();
 }
 
-export async function getPagesOfPromotions(page = 1, pageSize = PAGE_SIZE, numOfPages = 1) {
+export async function getPagesOfPromotions(page = FIRST_PAGE, pageSize = PAGE_SIZE, numOfPages = 1) {
     const response = await fetch(`/promotions/pages?page=${page}&limit=${pageSize}&numOfPages=${numOfPages}`);
     return await response.json();
 }

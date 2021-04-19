@@ -23,8 +23,8 @@ module.exports = {
     getPagesOfPromotions: async function (page=global.DEFAULT_PAGE_NUM, limit=global.DEFAULT_PAGE_SIZE, numOfPages=1) {
 
         const promises = [];
-        for(i=0; i < numOfPages; i++){
-            promises.push(this.getPromotions(+page + +i, limit));
+        for(let i=0; i < numOfPages; i++){
+            promises.push(this.getPromotions(+page + i, limit));
         }
 
         const results = await Promise.all(promises);

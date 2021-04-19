@@ -14,9 +14,7 @@ export const Promotions = ({   promotions,
                                pageData,
                                updateLowestCurrentPage}) => {
 
-    const [showEditModal, setShowEditModal] = useState(false);
-
-    // we want to use isFetching and pageData in scroll event handler, but state are not accessible there and ref is.
+    // we want to use isFetching and pageData in handle scroll event, but state are not accessible there and ref is.
     const pageDataRef = useRef();
     pageDataRef.current = pageData;
     const [isFetching, _setIsFetching] = useState(false);
@@ -26,6 +24,7 @@ export const Promotions = ({   promotions,
         _setIsFetching(isFetching);
     };
 
+    const [showEditModal, setShowEditModal] = useState(false);
     const [editedPromotion, setEditedPromotion] = useState({});
     const [promotionsListRef] = useScrollCallback();
 

@@ -26,13 +26,6 @@ function App() {
   const getAndResetCurrentPromotions = async () => {
       const promotionsData = await getPagesOfPromotions(pageData.lowestCurrentPage, PAGE_SIZE, NUM_OF_RENDERING_PAGES);
       setPromotions(promotionsData.promotions);
-    };
-
-  const updateLowestCurrentPage = (isBottom) => {
-      setPageData((pageData) => {
-          const newLowestPage = pageData.lowestCurrentPage + (isBottom ? 1 : -1);
-          return Object.assign({}, pageData, {lowestCurrentPage: newLowestPage});
-      });
   };
 
   const initData = async () => {
@@ -41,6 +34,13 @@ function App() {
       setPromotions(promotionsData.promotions);
       setPageData((pageData) => {
           return Object.assign({}, pageData, {lowestCurrentPage: FIRST_PAGE});
+      });
+  };
+
+  const updateLowestCurrentPage = (isBottom) => {
+      setPageData((pageData) => {
+          const newLowestPage = pageData.lowestCurrentPage + (isBottom ? 1 : -1);
+          return Object.assign({}, pageData, {lowestCurrentPage: newLowestPage});
       });
   };
 
@@ -63,13 +63,13 @@ function App() {
   }, []);
 
     // Not used -it's suppose to render only the deleted promotion but now we render the entire page
-    const deletePromotionFromState = (promotionId) => {
-        setPromotions((promotions) => {
-            return promotions.filter((promotion) => {
-                return promotion._id !== promotionId;
-            });
-        });
-    };
+    // const deletePromotionFromState = (promotionId) => {
+    //     setPromotions((promotions) => {
+    //         return promotions.filter((promotion) => {
+    //             return promotion._id !== promotionId;
+    //         });
+    //     });
+    // };
 
     return (
         <div style={{height: '100%'}}>

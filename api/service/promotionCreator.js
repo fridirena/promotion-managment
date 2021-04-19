@@ -5,7 +5,7 @@ module.exports = {
 
     getPromotions: function () {
         const promotions = [];
-        for (i = 1; i < global.PROMOTION_NUM+1; i++) {
+        for (let i = 1; i < global.PROMOTION_NUM+1; i++) {
             promotions.push({
                 name: "prom name" + i,
                 type: types[Math.floor(Math.random() * types.length)],

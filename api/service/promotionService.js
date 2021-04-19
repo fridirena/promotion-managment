@@ -1,4 +1,4 @@
-const promotions = require('./../dao/promotion');
+const promotionDao = require('../dao/promotionDao');
 const promotionCreator = require("./promotionCreator");
 const global = require("./../util/global");
 const {promotionStructure} = require("./../util/promotionConstants");
@@ -6,8 +6,8 @@ const {promotionStructure} = require("./../util/promotionConstants");
 module.exports = {
 
     createNewPromotions: async function () {
-        await promotions.deleteMany();
-        await promotions.insertMany(promotionCreator.getPromotions());
+        await promotionDao.deleteMany();
+        await promotionDao.insertMany(promotionCreator.getPromotions());
     },
 
     getPromotions: async function (page=global.DEFAULT_PAGE_NUM, limit=global.DEFAULT_PAGE_SIZE) {
@@ -17,7 +17,7 @@ module.exports = {
             customLabels: {docs: global.PROMOTION_NAME},
         };
 
-        return await promotions.paginate({}, options);
+        return await promotionDao.paginate({}, options);
     },
 
     getPagesOfPromotions: async function (page=global.DEFAULT_PAGE_NUM, limit=global.DEFAULT_PAGE_SIZE, numOfPages=1) {
@@ -35,11 +35,11 @@ module.exports = {
     },
 
     updatePromotion: async function (promotion) {
-        return await promotions.findByIdAndUpdate(promotion._id, promotion, {new: true});
+        return await promotionDao.findByIdAndUpdate(promotion._id, promotion, {new: true});
     },
 
     deletePromotion: async function (id) {
-       await promotions.findByIdAndRemove(id);
+       await promotionDao.findByIdAndRemove(id);
     },
 
     getPromotionMetaData: function () {

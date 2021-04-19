@@ -1,19 +1,11 @@
-Server:
-
------------------------
-client:
-
-clean up after scroll will be deleted to unregister to the event
-
-------------------------
-Nice to have:
+More improvements to do:
 
 toast once action succeeded
-loading
-type script
-Redux
-testing
-error handling in the UI
+Add Loading when scrolling down and up
+Use Type script
+Use Redux
+Add testing
+Error handling in the UI
 
 --------------------------
 DONE:
